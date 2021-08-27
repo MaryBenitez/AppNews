@@ -1,3 +1,4 @@
+import 'package:appnoticias/src/services/news_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +55,7 @@ class _Paginas extends StatelessWidget {
 //Permite notificar que actulice todos los widgets
 class _NavegacionModel with ChangeNotifier {
   int _paginaActual = 0;
-  PageController _pageController = new PageController(initialPage: 1);
+  PageController _pageController = new PageController(initialPage: 0);
 
   //Cambia pagina actual
   int get paginaActual => this._paginaActual;
