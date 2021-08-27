@@ -33,7 +33,11 @@ class _Navegacion extends StatelessWidget {
 class _Paginas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //instancia
+    final navegacionModel = Provider.of<_NavegacionModel>(context);
+
     return PageView(
+      controller: navegacionModel.pageController,
       physics: NeverScrollableScrollPhysics(),
       children: [
         Container(
@@ -50,10 +54,16 @@ class _Paginas extends StatelessWidget {
 //Permite notificar que actulice todos los widgets
 class _NavegacionModel with ChangeNotifier {
   int _paginaActual = 0;
+  PageController _pageController = new PageController(initialPage: 1);
 
+  //Cambia pagina actual
   int get paginaActual => this._paginaActual;
   set paginaActual(int valor) {
     this._paginaActual = valor;
+    _pageController.animateToPage(valor,
+        duration: Duration(milliseconds: 250), curve: Curves.easeOut);
     notifyListeners();
   }
+
+  PageController get pageController => this._pageController;
 }
